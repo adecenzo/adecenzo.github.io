@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>untagged on Hello Friend NG</title>
+    <link>localhost/tags/untagged/</link>
+    <description>Recent content in untagged on Hello Friend NG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sun, 28 Mar 2021 02:24:02 -0400</lastBuildDate><atom:link href="localhost/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Notebook</title>
+      <link>localhost/posts/thenotebook/</link>
+      <pubDate>Sun, 28 Mar 2021 02:24:02 -0400</pubDate>
+      
+      <guid>localhost/posts/thenotebook/</guid>
+      <description>OSINT  Nmap  The following nmap command was executed in order to obtain information about the machine:
+ nmap -p- -o nmap_output 10.129.124.15
+ Nmap scan report for thenotebook.htb (10.129.124.15) Host is up (0.037s latency). Not shown: 65532 closed ports PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 10010/tcp filtered rxapi Based on the nmapout results, we see there is an uncommon service running on port 10010, called rxapi.</description>
+    </item>
+    
+  </channel>
+</rss>
