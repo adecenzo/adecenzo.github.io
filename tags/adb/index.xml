@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>adb on Blog and stuff</title>
+    <link>http://adecenzo.github.io/tags/adb/</link>
+    <description>Recent content in adb on Blog and stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Jun 2021 03:04:04 -0400</lastBuildDate><atom:link href="http://adecenzo.github.io/tags/adb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack the Box - Explore</title>
+      <link>http://adecenzo.github.io/posts/explore/</link>
+      <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/posts/explore/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

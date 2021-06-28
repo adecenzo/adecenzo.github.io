@@ -1,19 +1,90 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Hello Friend NG</title>
-    <link>https://adecenzo.github.io/tags/</link>
-    <description>Recent content in Tags on Hello Friend NG</description>
+    <title>Tags on Blog and stuff</title>
+    <link>http://adecenzo.github.io/tags/</link>
+    <description>Recent content in Tags on Blog and stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 28 Mar 2021 02:24:02 -0400</lastBuildDate><atom:link href="https://adecenzo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 03:23:14 -0400</lastBuildDate><atom:link href="http://adecenzo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>untagged</title>
-      <link>https://adecenzo.github.io/tags/untagged/</link>
-      <pubDate>Sun, 28 Mar 2021 02:24:02 -0400</pubDate>
+      <title>ctf</title>
+      <link>http://adecenzo.github.io/tags/ctf/</link>
+      <pubDate>Mon, 28 Jun 2021 03:23:14 -0400</pubDate>
       
-      <guid>https://adecenzo.github.io/tags/untagged/</guid>
+      <guid>http://adecenzo.github.io/tags/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cve</title>
+      <link>http://adecenzo.github.io/tags/cve/</link>
+      <pubDate>Mon, 28 Jun 2021 03:23:14 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/cve/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://adecenzo.github.io/tags/linux/</link>
+      <pubDate>Mon, 28 Jun 2021 03:23:14 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>custom</title>
+      <link>http://adecenzo.github.io/tags/custom/</link>
+      <pubDate>Mon, 28 Jun 2021 03:23:06 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/custom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>enum</title>
+      <link>http://adecenzo.github.io/tags/enum/</link>
+      <pubDate>Mon, 28 Jun 2021 03:23:06 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/enum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hackthebox</title>
+      <link>http://adecenzo.github.io/tags/hackthebox/</link>
+      <pubDate>Mon, 28 Jun 2021 03:17:44 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/hackthebox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>adb</title>
+      <link>http://adecenzo.github.io/tags/adb/</link>
+      <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/adb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>android</title>
+      <link>http://adecenzo.github.io/tags/android/</link>
+      <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>http://adecenzo.github.io/tags/ssh/</link>
+      <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/tags/ssh/</guid>
       <description></description>
     </item>
     

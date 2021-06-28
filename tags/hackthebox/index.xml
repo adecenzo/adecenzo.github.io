@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hackthebox on Blog and stuff</title>
+    <link>http://adecenzo.github.io/tags/hackthebox/</link>
+    <description>Recent content in hackthebox on Blog and stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Jun 2021 03:17:44 -0400</lastBuildDate><atom:link href="http://adecenzo.github.io/tags/hackthebox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hack the Box - The Notebook</title>
+      <link>http://adecenzo.github.io/posts/thenotebook/</link>
+      <pubDate>Mon, 28 Jun 2021 03:17:44 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/posts/thenotebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hack the Box - Explore</title>
+      <link>http://adecenzo.github.io/posts/explore/</link>
+      <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
+      
+      <guid>http://adecenzo.github.io/posts/explore/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
