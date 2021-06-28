@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>custom on Blog and stuff</title>
-    <link>http://adecenzo.github.io/tags/custom/</link>
+    <link>https://adecenzo.github.io/tags/custom/</link>
     <description>Recent content in custom on Blog and stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jun 2021 03:23:06 -0400</lastBuildDate><atom:link href="http://adecenzo.github.io/tags/custom/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 03:23:06 -0400</lastBuildDate><atom:link href="https://adecenzo.github.io/tags/custom/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hack the Box - Pit</title>
-      <link>http://adecenzo.github.io/posts/pit/</link>
+      <link>https://adecenzo.github.io/posts/pit/</link>
       <pubDate>Mon, 28 Jun 2021 03:23:06 -0400</pubDate>
       
-      <guid>http://adecenzo.github.io/posts/pit/</guid>
+      <guid>https://adecenzo.github.io/posts/pit/</guid>
       <description></description>
     </item>
     

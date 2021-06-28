@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>android on Blog and stuff</title>
-    <link>http://adecenzo.github.io/tags/android/</link>
+    <link>https://adecenzo.github.io/tags/android/</link>
     <description>Recent content in android on Blog and stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jun 2021 03:04:04 -0400</lastBuildDate><atom:link href="http://adecenzo.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 03:04:04 -0400</lastBuildDate><atom:link href="https://adecenzo.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hack the Box - Explore</title>
-      <link>http://adecenzo.github.io/posts/explore/</link>
+      <link>https://adecenzo.github.io/posts/explore/</link>
       <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
       
-      <guid>http://adecenzo.github.io/posts/explore/</guid>
+      <guid>https://adecenzo.github.io/posts/explore/</guid>
       <description></description>
     </item>
     

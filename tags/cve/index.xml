@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cve on Blog and stuff</title>
-    <link>http://adecenzo.github.io/tags/cve/</link>
+    <link>https://adecenzo.github.io/tags/cve/</link>
     <description>Recent content in cve on Blog and stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jun 2021 03:23:14 -0400</lastBuildDate><atom:link href="http://adecenzo.github.io/tags/cve/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 03:23:14 -0400</lastBuildDate><atom:link href="https://adecenzo.github.io/tags/cve/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hack the Box - Armageddon</title>
-      <link>http://adecenzo.github.io/posts/armageddon/</link>
+      <link>https://adecenzo.github.io/posts/armageddon/</link>
       <pubDate>Mon, 28 Jun 2021 03:23:14 -0400</pubDate>
       
-      <guid>http://adecenzo.github.io/posts/armageddon/</guid>
+      <guid>https://adecenzo.github.io/posts/armageddon/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hack the Box - Cap</title>
-      <link>http://adecenzo.github.io/posts/cap/</link>
+      <link>https://adecenzo.github.io/posts/cap/</link>
       <pubDate>Mon, 28 Jun 2021 03:22:59 -0400</pubDate>
       
-      <guid>http://adecenzo.github.io/posts/cap/</guid>
+      <guid>https://adecenzo.github.io/posts/cap/</guid>
       <description></description>
     </item>
     
