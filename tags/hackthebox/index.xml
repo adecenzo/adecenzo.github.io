@@ -24,7 +24,9 @@
       <pubDate>Mon, 28 Jun 2021 03:04:04 -0400</pubDate>
       
       <guid>https://adecenzo.github.io/posts/explore/</guid>
-      <description></description>
+      <description>OSINT  Nmap  The following nmap command was executed
+  nmap -sV -p- -o output explore.htb
+  # Nmap 7.91 scan initiated Sun Jun 27 22:21:05 2021 as: nmap -sV -p- -o output explore.htb Nmap scan report for explore.htb (10.129.133.16) Host is up (0.040s latency). Not shown: 65530 closed ports PORT STATE SERVICE VERSION 2222/tcp open ssh (protocol 2.0) 5555/tcp filtered freeciv 35735/tcp open unknown 42135/tcp open http ES File Explorer Name Response httpd 59777/tcp open http Bukkit JSONAPI httpd for Minecraft game server 3.</description>
     </item>
     
   </channel>
