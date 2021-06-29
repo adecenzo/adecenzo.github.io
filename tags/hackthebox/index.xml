@@ -13,7 +13,9 @@
       <pubDate>Mon, 28 Jun 2021 03:17:44 -0400</pubDate>
       
       <guid>https://adecenzo.github.io/posts/thenotebook/</guid>
-      <description></description>
+      <description>OSINT  Nmap  The following nmap command was executed in order to obtain information about the machine:
+ nmap -p- -o nmap_output 10.129.124.15
+ Nmap scan report for thenotebook.htb (10.129.124.15) Host is up (0.037s latency). Not shown: 65532 closed ports PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 10010/tcp filtered rxapi Based on the nmapout results, we see there is an uncommon service running on port 10010, called rxapi.</description>
     </item>
     
     <item>

